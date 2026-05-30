@@ -17,7 +17,7 @@ export const exploreOptions = [
     title: 'The Wall',
     subtitle: '(Custom-In Wall Series)',
     description: [
-      'Speaker And Control Unit Sold Seperately',
+      'Speaker And Control Unit Sold Separately',
       'Started With 250" Can Be Expanded',
       'To Your Imagination',
     ],

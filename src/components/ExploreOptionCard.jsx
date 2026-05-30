@@ -104,7 +104,7 @@ export default function ExploreOptionCard({ title, subtitle, image, index }) {
         {/* Details: Tighter spacing and closer alignment to title */}
         <div className="mt-3 flex flex-col items-center w-full space-y-2.5">
           <div className="body-text text-xs sm:text-sm text-gray-500 leading-relaxed">
-            <p>Speaker And Control Unit Sold Seperately</p>
+            <p>Speaker And Control Unit Sold Separately</p>
           </div>
           
           <div className="body-text text-center text-xs sm:text-sm text-gray-500 leading-relaxed space-y-0.5">

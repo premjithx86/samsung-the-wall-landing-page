@@ -196,7 +196,7 @@ export default function ContactSection() {
           <h3 
             className="heading-primary text-3xl sm:text-4xl font-bold tracking-tight text-white mb-8 text-left leading-none"
           >
-            Messege
+            Message
           </h3>
 
           <form onSubmit={handleSubmit} className="space-y-6" noValidate>
@@ -268,7 +268,7 @@ export default function ContactSection() {
               <motion.textarea
                 whileFocus={{ borderColor: "rgba(255, 255, 255, 0.4)" }}
                 rows="5"
-                placeholder="Messege"
+                placeholder="Message"
                 value={formData.message}
                 onChange={(e) => handleChange('message', e.target.value)}
                 onBlur={() => handleBlur('message')}
