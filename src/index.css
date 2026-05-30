@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+/* Brand Typography Utility Classes */
+.heading-primary {
+  font-family: 'SamsungSharpSans', sans-serif;
+  font-weight: 700;
+}
+
+.heading-secondary {
+  font-family: 'SamsungSharpSans', sans-serif;
+  font-weight: 500;
+}
+
+.body-text {
+  font-family: 'SamsungOne', sans-serif;
+  font-weight: 400;
+}
+
+.nav-text {
+  font-family: 'SamsungOne', sans-serif;
+  font-weight: 400;
+}
+
+.logo-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+.footer-nav-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
+
+@theme {
+  --font-sans: 'SamsungOne', system-ui, -apple-system, sans-serif;
+  --font-display: 'SamsungSharpSans', sans-serif;
+}
+
+@layer base {
+  :root {
+    --bg-primary: #030712;
+    --bg-secondary: #0b0f19;
+    --accent-indigo: #6366f1;
+    --accent-purple: #a855f7;
+    --accent-pink: #ec4899;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'SamsungOne', sans-serif;
+    font-weight: 400;
+    background-color: var(--bg-primary);
+    color: #f3f4f6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'SamsungSharpSans', sans-serif;
+    font-weight: 700;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #030712;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
+
+/* Glassmorphism custom styling utilities */
+.glass-panel {
+  background: rgba(17, 24, 39, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(17, 24, 39, 0.85);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.3);
+  transform: translateY(-4px);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #f472b6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-radial-gradient {
+  background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
+}
+
+.bg-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
