@@ -37,9 +37,6 @@ export default function TechnologySection({ title, description, image, animation
     setSliderPos(percentage);
   };
 
-  const onMouseDown = () => { isDraggingRef.current = true; };
-  const onTouchStart = () => { isDraggingRef.current = true; };
-
   // Connect global window mousemove/mouseup to guarantee seamless dragging across boundaries
   useEffect(() => {
     const handleGlobalMove = (e) => {
@@ -48,6 +45,9 @@ export default function TechnologySection({ title, description, image, animation
       if (e.type === 'touchmove') {
         if (e.touches && e.touches[0]) {
           handleSliderMove(e.touches[0].clientX);
+          if (e.cancelable) {
+            e.preventDefault();
+          }
         }
       } else {
         // Handle mouse move
@@ -61,14 +61,16 @@ export default function TechnologySection({ title, description, image, animation
 
     window.addEventListener('mousemove', handleGlobalMove);
     window.addEventListener('mouseup', handleGlobalRelease);
-    window.addEventListener('touchmove', handleGlobalMove, { passive: true });
+    window.addEventListener('touchmove', handleGlobalMove, { passive: false });
     window.addEventListener('touchend', handleGlobalRelease);
+    window.addEventListener('touchcancel', handleGlobalRelease);
 
     return () => {
       window.removeEventListener('mousemove', handleGlobalMove);
       window.removeEventListener('mouseup', handleGlobalRelease);
       window.removeEventListener('touchmove', handleGlobalMove);
       window.removeEventListener('touchend', handleGlobalRelease);
+      window.removeEventListener('touchcancel', handleGlobalRelease);
     };
   }, []);
 
@@ -144,7 +146,18 @@ export default function TechnologySection({ title, description, image, animation
           <div 
             ref={sliderContainerRef}
             className="relative w-full cursor-ew-resize overflow-hidden bg-black select-none"
-            onMouseMove={(e) => { if (isDraggingRef.current) handleSliderMove(e.clientX); }}
+            onMouseDown={(e) => {
+              if (e.button !== 0) return; // only left click
+              e.preventDefault();
+              isDraggingRef.current = true;
+              handleSliderMove(e.clientX);
+            }}
+            onTouchStart={(e) => {
+              if (e.touches && e.touches[0]) {
+                isDraggingRef.current = true;
+                handleSliderMove(e.touches[0].clientX);
+              }
+            }}
           >
             {/* Left Image: Original */}
             <img 
@@ -165,16 +178,17 @@ export default function TechnologySection({ title, description, image, animation
               />
             </div>
 
-            {/* Draggable Vertical Slider Handle Line */}
+            {/* Draggable Vertical Slider Handle Line (hitbox expanded to 48px wide) */}
             <div 
-              className="absolute top-0 bottom-0 w-[2px] bg-white/70 z-30 flex items-center justify-center"
+              className="absolute top-0 bottom-0 w-[48px] -ml-[24px] z-30 flex items-center justify-center cursor-ew-resize group"
               style={{ left: `${sliderPos}%` }}
-              onMouseDown={(e) => { e.preventDefault(); onMouseDown(); }}
-              onTouchStart={onTouchStart}
             >
+              {/* Visible 2px divider line */}
+              <div className="absolute top-0 bottom-0 w-[2px] bg-white/70 group-hover:bg-white transition-colors" />
+
               {/* Sleek comparison knob */}
-              <div className="w-10 h-10 rounded-full bg-white shadow-xl flex items-center justify-center text-gray-900 border border-gray-200 pointer-events-none hover:scale-105 active:scale-95 transition-transform">
-                <svg className="w-4 h-4 transform rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="w-10 h-10 rounded-full bg-white shadow-xl flex items-center justify-center text-gray-900 border border-gray-200 z-10 pointer-events-none group-hover:scale-105 group-active:scale-95 transition-transform">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M8 9l-4 4 4 4m8 0l4-4-4-4" />
                 </svg>
               </div>
