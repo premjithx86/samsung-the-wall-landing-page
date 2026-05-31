@@ -5,16 +5,45 @@ import img2 from '../assets/resale/resale-2.png';
 import img3 from '../assets/resale/resale-3.png';
 
 export default function ResaleDisplay() {
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsDesktop(window.innerWidth >= 1024);
+      setWindowWidth(window.innerWidth);
     };
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  const getResponsiveStyle = (imgNum) => {
+    const width = windowWidth;
+
+    if (width >= 1280) { // xl desktop
+      if (imgNum === 1) return { transform: 'rotateY(42deg) translateX(20px)', transformOrigin: 'right center', zIndex: 10, marginRight: '-80px' };
+      if (imgNum === 2) return { transform: 'rotateY(18deg) translateX(10px)', transformOrigin: 'right center', zIndex: 20, marginRight: '-70px' };
+      if (imgNum === 3) return { transform: 'rotateY(-4deg)', transformOrigin: 'left center', zIndex: 30 };
+    }
+    if (width >= 1024) { // lg desktop
+      if (imgNum === 1) return { transform: 'rotateY(42deg) translateX(20px)', transformOrigin: 'right center', zIndex: 10, marginRight: '-70px' };
+      if (imgNum === 2) return { transform: 'rotateY(18deg) translateX(10px)', transformOrigin: 'right center', zIndex: 20, marginRight: '-60px' };
+      if (imgNum === 3) return { transform: 'rotateY(-4deg)', transformOrigin: 'left center', zIndex: 30 };
+    }
+    if (width >= 768) { // md tablet
+      if (imgNum === 1) return { transform: 'rotateY(42deg) translateX(15px)', transformOrigin: 'right center', zIndex: 10, marginRight: '-55px' };
+      if (imgNum === 2) return { transform: 'rotateY(18deg) translateX(8px)', transformOrigin: 'right center', zIndex: 20, marginRight: '-45px' };
+      if (imgNum === 3) return { transform: 'rotateY(-4deg)', transformOrigin: 'left center', zIndex: 30 };
+    }
+    if (width >= 640) { // sm small tablet
+      if (imgNum === 1) return { transform: 'rotateY(42deg) translateX(10px)', transformOrigin: 'right center', zIndex: 10, marginRight: '-40px' };
+      if (imgNum === 2) return { transform: 'rotateY(18deg) translateX(5px)', transformOrigin: 'right center', zIndex: 20, marginRight: '-30px' };
+      if (imgNum === 3) return { transform: 'rotateY(-4deg)', transformOrigin: 'left center', zIndex: 30 };
+    }
+    // Mobile (<640px)
+    if (imgNum === 1) return { transform: 'rotateY(42deg) translateX(5px)', transformOrigin: 'right center', zIndex: 10, marginRight: '-28px' };
+    if (imgNum === 2) return { transform: 'rotateY(18deg) translateX(3px)', transformOrigin: 'right center', zIndex: 20, marginRight: '-24px' };
+    return { transform: 'rotateY(-4deg)', transformOrigin: 'left center', zIndex: 30 };
+  };
 
   return (
     <div
@@ -26,10 +55,8 @@ export default function ResaleDisplay() {
         perspective-[1200px] sets how "deep" the 3D space feels.
       */}
       <div
-        className={`flex items-center justify-center w-full max-w-[1400px] overflow-visible px-4 ${
-          isDesktop ? '' : 'flex-wrap gap-4 sm:gap-6'
-        }`}
-        style={isDesktop ? { perspective: '1200px', perspectiveOrigin: '50% 50%' } : {}}
+        className="flex items-center justify-center w-full max-w-[1400px] overflow-visible px-4"
+        style={{ perspective: '1200px', perspectiveOrigin: '50% 50%' }}
       >
 
         {/* --- Image 1 (Left panel — rotated away, smallest) --- */}
@@ -38,17 +65,8 @@ export default function ResaleDisplay() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.9, ease: [0.215, 0.61, 0.355, 1] }}
-          className="relative flex-shrink-0"
-          style={isDesktop ? {
-            transform: 'rotateY(42deg) translateX(20px)',
-            transformOrigin: 'right center',
-            zIndex: 10,
-            marginRight: '-80px',
-          } : {
-            transform: 'none',
-            zIndex: 'auto',
-            marginRight: '0px',
-          }}
+          className="relative flex-shrink-0 animate-transform"
+          style={getResponsiveStyle(1)}
         >
           <img
             src={img1}
@@ -66,17 +84,8 @@ export default function ResaleDisplay() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.9, delay: 0.12, ease: [0.215, 0.61, 0.355, 1] }}
-          className="relative flex-shrink-0"
-          style={isDesktop ? {
-            transform: 'rotateY(18deg) translateX(10px)',
-            transformOrigin: 'right center',
-            zIndex: 20,
-            marginRight: '-70px',
-          } : {
-            transform: 'none',
-            zIndex: 'auto',
-            marginRight: '0px',
-          }}
+          className="relative flex-shrink-0 animate-transform"
+          style={getResponsiveStyle(2)}
         >
           <img
             src={img2}
@@ -94,15 +103,8 @@ export default function ResaleDisplay() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.9, delay: 0.25, ease: [0.215, 0.61, 0.355, 1] }}
-          className="relative flex-shrink-0"
-          style={isDesktop ? {
-            transform: 'rotateY(-4deg)',
-            transformOrigin: 'left center',
-            zIndex: 30,
-          } : {
-            transform: 'none',
-            zIndex: 'auto',
-          }}
+          className="relative flex-shrink-0 animate-transform"
+          style={getResponsiveStyle(3)}
         >
           <img
             src={img3}
