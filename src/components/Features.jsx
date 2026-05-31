@@ -29,7 +29,7 @@ export default function Features() {
   ];
 
   return (
-    <section id="features" className="bg-[#030712] py-24 px-6 md:px-12 text-white relative">
+    <section id="features" className="bg-[#030712] py-24 px-6 md:px-12 text-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto space-y-16">
         
         {/* Title */}

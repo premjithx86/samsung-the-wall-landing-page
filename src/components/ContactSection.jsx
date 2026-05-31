@@ -111,7 +111,7 @@ export default function ContactSection() {
   return (
     <section 
       id="contact" 
-      className="bg-black py-24 px-6 md:px-12 text-white select-none border-t border-gray-950 overflow-visible"
+      className="bg-black py-24 px-6 md:px-12 text-white select-none border-t border-gray-950 overflow-hidden"
     >
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         

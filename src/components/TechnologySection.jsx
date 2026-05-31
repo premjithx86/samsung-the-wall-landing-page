@@ -204,7 +204,7 @@ export default function TechnologySection({ title, description, image, animation
   return (
     <section 
       ref={sectionRef}
-      className="bg-black py-20 px-4 md:px-0 w-full flex flex-col items-center select-none"
+      className="bg-black py-20 px-4 md:px-0 w-full flex flex-col items-center select-none overflow-hidden"
     >
       {/* Immersive Responsive Container (90% width, max 1400px, sharp corners) */}
       <div className="w-[90vw] max-w-[1400px] flex flex-col items-center">

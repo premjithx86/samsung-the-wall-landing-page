@@ -19,7 +19,7 @@ import { options } from './data/optionsData';
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#030712] text-gray-100 selection:bg-indigo-500 selection:text-white antialiased">
+    <div className="min-h-screen bg-[#030712] text-gray-100 selection:bg-indigo-500 selection:text-white antialiased w-full overflow-x-hidden">
       <Navbar />
       <main>
         <Hero />
@@ -52,7 +52,7 @@ function App() {
         ))}
 
         {/* Mapped Option Cards Section (Light background grid layout) */}
-        <section className="bg-[#f8f9fa] w-full py-16 flex flex-col items-center">
+        <section className="bg-[#f8f9fa] w-full py-16 flex flex-col items-center overflow-hidden">
           <div className="max-w-[1400px] w-full flex flex-col">
             {options.map((opt, index) => (
               <OptionCard

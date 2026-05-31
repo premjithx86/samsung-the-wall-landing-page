@@ -4,7 +4,7 @@ import { exploreOptions } from '../data/exploreOptionsData';
 
 export default function ExploreOptionsSection() {
   return (
-    <section className="bg-[#f2f2f2] w-full py-20 px-6 md:px-12 flex flex-col items-center select-none border-t border-gray-300/30">
+    <section className="bg-[#f2f2f2] w-full py-20 px-6 md:px-12 flex flex-col items-center select-none border-t border-gray-300/30 overflow-hidden">
       <div className="max-w-[1400px] w-full flex flex-col items-center gap-12">
         
         {/* Section Title */}

@@ -63,7 +63,7 @@ export default function SpaceGallerySection() {
   return (
     <section 
       id="space-gallery" 
-      className="bg-black py-20 px-6 md:px-12 text-white select-none border-t border-gray-950 overflow-visible"
+      className="bg-black py-20 px-6 md:px-12 text-white select-none border-t border-gray-950 overflow-hidden"
     >
       <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-12 md:gap-14">
         

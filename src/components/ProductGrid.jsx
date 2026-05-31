@@ -4,7 +4,7 @@ import { products } from '../data/productsData';
 
 export default function ProductGrid() {
   return (
-    <section id="products" className="bg-[#f8f9fa] w-full py-20 px-6 md:px-12 flex flex-col items-center select-none border-t border-gray-200/40">
+    <section id="products" className="bg-[#f8f9fa] w-full py-20 px-6 md:px-12 flex flex-col items-center select-none border-t border-gray-200/40 overflow-hidden">
       <div className="max-w-[1400px] w-full flex flex-col items-center gap-12">
         
         {/* Section Heading */}

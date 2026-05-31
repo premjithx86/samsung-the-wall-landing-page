@@ -6,7 +6,7 @@ export default function ResaleSection() {
   return (
     <section 
       id="resale" 
-      className="bg-black py-20 px-6 md:px-12 text-white flex flex-col items-center justify-center select-none border-t border-gray-900"
+      className="bg-black py-20 px-6 md:px-12 text-white flex flex-col items-center justify-center select-none border-t border-gray-900 overflow-hidden"
     >
       <div className="max-w-[1200px] w-full flex flex-col items-center gap-6 md:gap-8">
         

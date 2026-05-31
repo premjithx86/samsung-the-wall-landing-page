@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import img1 from '../assets/resale/resale-1.png';
 import img2 from '../assets/resale/resale-2.png';
 import img3 from '../assets/resale/resale-3.png';
 
 export default function ResaleDisplay() {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div
       className="relative w-full flex items-center justify-center overflow-visible select-none py-6"
@@ -15,8 +26,10 @@ export default function ResaleDisplay() {
         perspective-[1200px] sets how "deep" the 3D space feels.
       */}
       <div
-        className="flex items-center justify-center w-full max-w-[1400px] overflow-visible px-4"
-        style={{ perspective: '1200px', perspectiveOrigin: '50% 50%' }}
+        className={`flex items-center justify-center w-full max-w-[1400px] overflow-visible px-4 ${
+          isDesktop ? '' : 'flex-wrap gap-4 sm:gap-6'
+        }`}
+        style={isDesktop ? { perspective: '1200px', perspectiveOrigin: '50% 50%' } : {}}
       >
 
         {/* --- Image 1 (Left panel — rotated away, smallest) --- */}
@@ -26,11 +39,15 @@ export default function ResaleDisplay() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.9, ease: [0.215, 0.61, 0.355, 1] }}
           className="relative flex-shrink-0"
-          style={{
+          style={isDesktop ? {
             transform: 'rotateY(42deg) translateX(20px)',
             transformOrigin: 'right center',
             zIndex: 10,
             marginRight: '-80px',
+          } : {
+            transform: 'none',
+            zIndex: 'auto',
+            marginRight: '0px',
           }}
         >
           <img
@@ -50,11 +67,15 @@ export default function ResaleDisplay() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.9, delay: 0.12, ease: [0.215, 0.61, 0.355, 1] }}
           className="relative flex-shrink-0"
-          style={{
+          style={isDesktop ? {
             transform: 'rotateY(18deg) translateX(10px)',
             transformOrigin: 'right center',
             zIndex: 20,
             marginRight: '-70px',
+          } : {
+            transform: 'none',
+            zIndex: 'auto',
+            marginRight: '0px',
           }}
         >
           <img
@@ -74,10 +95,13 @@ export default function ResaleDisplay() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.9, delay: 0.25, ease: [0.215, 0.61, 0.355, 1] }}
           className="relative flex-shrink-0"
-          style={{
+          style={isDesktop ? {
             transform: 'rotateY(-4deg)',
             transformOrigin: 'left center',
             zIndex: 30,
+          } : {
+            transform: 'none',
+            zIndex: 'auto',
           }}
         >
           <img
